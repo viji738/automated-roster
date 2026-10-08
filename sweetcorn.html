@@ -1,4 +1,4 @@
-   <html lang="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -924,19 +924,6 @@ width:100%;max-width:100%;}
 .compliance-good{border-left:5px solid #16a34a}
 .compliance-warn{border-left:5px solid #f59e0b}
 .compliance-bad{border-left:5px solid #dc2626}
-.cab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.cab-card{background:white;border:1px solid #e4e7ec;border-radius:12px;padding:16px}
-.cab-card h3{margin:0;color:#173f8a}
-.cab-card .cab-count{font-size:28px;font-weight:800;margin:8px 0}
-.cab-list{margin:0;padding-left:18px;color:#475467;font-size:13px;line-height:1.7}
-.cab-1{border-top:5px solid #1769ff}
-.cab-2{border-top:5px solid #7c3aed}
-.cab-3{border-top:5px solid #16a34a}
-.shift-late{background:linear-gradient(135deg,#dcfce7,#bbf7d0)!important;color:#166534!important;font-weight:bold;border-left:1px solid #16a34a;border-right:1px solid #16a34a}
-.legend-late{background:#dcfce7;color:#166534}
-.lc-ft1{background:#fff3cd;color:#92400e}
-.lc-ft2{background:#e0e7ff;color:#3730a3}
-.cab-badge{display:inline-block;padding:4px 8px;border-radius:15px;font-size:11px;font-weight:700;background:#eef5ff;color:#173f8a}
 @media(max-width:1000px){.compliance-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.compliance-grid,.cab-grid{grid-template-columns:1fr}}
 
@@ -983,6 +970,22 @@ width:100%;max-width:100%;}
 .roster-table td:has(.roster-shift-editor){
   padding:5px;
 }
+
+
+/* ===== FINAL DARK / BOLD THEME ===== */
+body{background:#020409;color:#f8fbff}
+.sidebar{background:linear-gradient(180deg,#030712,#071426 55%,#120827);border-right:1px solid #00e5ff55}
+.main{background:radial-gradient(circle at 80% 0,#9b5cff18,transparent 25%),radial-gradient(circle at 20% 100%,#00e5ff10,transparent 25%)}
+.topbar h1{color:#fff}.user-chip{background:#0b111d;color:#fff;border:1px solid #00e5ff55}
+.card,.form-card,.table-card,.feature-card,.chart-card,.profile-subdivision-panel,.modal-card{background:#080c14;color:#f8fbff;border:1px solid #263247;box-shadow:0 10px 30px #0008}
+.card h3,.field label,.muted,.profile-subdivision-title small,.weekoff-days{color:#b9c7dc}.card strong,.feature-card h3,.profile-subdivision-title{color:#fff}
+.field input,.field select,.auth-card input,.auth-card select{background:#050811;color:#fff;border:1px solid #334155}.field input:focus,.field select:focus{border-color:#00e5ff;box-shadow:0 0 0 3px #00e5ff22}
+.employee-role-tabs,.profile-subdivision-tabs,.overview-toolbar,.report-week-toolbar{background:#050811;border:1px solid #263247}.employee-role-tab,.profile-tab{color:#9fb0c8}.employee-role-tab.active,.profile-tab.active{background:linear-gradient(135deg,#00a6c7,#7c3aed);color:#fff}.profile-tab:hover{background:#172033}
+th{background:#101827;color:#fff;border-color:#263247}td{border-color:#263247;color:#f8fbff}tbody tr:hover{background:#0d1422}
+.weekoff-group,.compliance-card{background:#0b111d;border-color:#263247}.suggestion,.ai-message{background:#0b111d;border-color:#263247;color:#f8fbff}
+.shift-day,.legend-day{background:#3b2805!important;color:#ffd500!important}.shift-night,.legend-night{background:#15144b!important;color:#9da8ff!important}.shift-off,.legend-off{background:#3b0d16!important;color:#ff6b81!important}
+.role-associate{background:#063d4a;color:#5de8ff}.role-tl{background:#25104b;color:#c7a6ff}.role-manager{background:#4a0e35;color:#ff8ed0}.role-pa{background:#0a3f2c;color:#66f2ad}
+.auth-card{background:#080c14;color:#fff;border:1px solid #263247}.auth-card h1{color:#fff}.auth-card p{color:#9fb0c8}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
@@ -1257,10 +1260,7 @@ width:100%;max-width:100%;}
     </div>
     <div id="weekoffGroupDashboard" class="grid3"></div>
   </div>
-
-  
-
-  <div class="feature-card" style="margin-top:18px">
+<div class="feature-card" style="margin-top:18px">
     <h3>🔔 Latest Notifications</h3>
     <div id="dashboardNotifications"></div>
   </div>
@@ -1306,7 +1306,7 @@ width:100%;max-width:100%;}
     <span class="role-badge role-manager">Manager</span>
     <span class="role-badge role-tl">TL</span>
     <span class="role-badge role-associate">Associate</span>
-    <span class="role-badge role-manager">MANAGER</span>
+    <span class="role-badge role-pa">DHH</span>
 
   </div>
 
@@ -1363,7 +1363,7 @@ width:100%;max-width:100%;}
           </option>
 
           <option>
-            PA
+            DHH
           </option>
 
         </select>
@@ -1863,6 +1863,8 @@ width:100%;max-width:100%;}
               onclick="selectProfileSubdivision('TL')">TL</button>
       <button type="button" class="profile-tab" id="profileTabManager"
               onclick="selectProfileSubdivision('Manager')">MANAGER</button>
+      <button type="button" class="profile-tab" id="profileTabDHH"
+              onclick="selectProfileSubdivision('DHH')">DHH</button>
     </div>
 
     <div class="form-grid" style="margin-top:18px">
@@ -1909,15 +1911,18 @@ width:100%;max-width:100%;}
     </div>
 
     <div id="leadershipProfileFields" class="profile-subdivision-panel hidden">
-      <div class="profile-subdivision-title">
-        <span>👔 Leadership Details</span>
-        <small>Leadership profile</small>
-      </div>
+      <div class="profile-subdivision-title"><span>👔 Leadership Details</span><small>Leadership profile</small></div>
+      <div class="form-grid"><div class="field"><label>Phone</label><input id="profileLeadershipPhone" type="tel" placeholder="Enter phone number"></div></div>
+    </div>
+
+    <div id="dhhProfileFields" class="profile-subdivision-panel hidden">
+      <div class="profile-subdivision-title"><span>🛡️ DHH Details</span><small>DHH roster profile</small></div>
       <div class="form-grid">
-        <div class="field">
-          <label>Phone</label>
-          <input id="profileLeadershipPhone" type="tel" placeholder="Enter phone number">
-        </div>
+        <div class="field"><label>Group (Week Off)</label><select id="profileDhhGroup">
+          <option value="A">A — Sun & Mon</option><option value="B">B — Mon & Tue</option><option value="C">C — Tue & Wed</option>
+          <option value="D">D — Wed & Thu</option><option value="E">E — Thu & Fri</option><option value="F">F — Fri & Sat</option><option value="G">G — Sat & Sun</option>
+        </select></div>
+        <div class="field"><label>Phone</label><input id="profileDhhPhone" type="tel" placeholder="Enter phone number"></div>
       </div>
     </div>
 
@@ -2257,6 +2262,8 @@ width:100%;max-width:100%;}
               onclick="selectEmployeeRole('TL')">TL</button>
       <button type="button" class="employee-role-tab" id="employeeRoleManager"
               onclick="selectEmployeeRole('Manager')">MANAGER</button>
+      <button type="button" class="employee-role-tab" id="employeeRoleDHH"
+              onclick="selectEmployeeRole('DHH')">DHH</button>
     </div>
     <input type="hidden" id="employeeRole" value="Associate">
 
@@ -2298,6 +2305,21 @@ width:100%;max-width:100%;}
       </div>
     </div>
 
+    <div id="employeeDhhFields" class="hidden">
+      <div class="field" style="margin-top:12px">
+        <label>Group (Week Off)</label>
+        <select id="employeeDhhGroup">
+          <option value="A">A — Sun & Mon</option><option value="B">B — Mon & Tue</option>
+          <option value="C">C — Tue & Wed</option><option value="D">D — Wed & Thu</option>
+          <option value="E">E — Thu & Fri</option><option value="F">F — Fri & Sat</option><option value="G">G — Sat & Sun</option>
+        </select>
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label>Phone</label>
+        <input id="employeeDhhPhone" type="tel" placeholder="Enter phone number">
+      </div>
+    </div>
+
     <div class="form-actions">
       <button class="action-btn success" onclick="saveEmployee()">💾 Save</button>
       <button class="action-btn secondary" onclick="closeEmployeeModal()">Cancel</button>
@@ -2309,14 +2331,14 @@ width:100%;max-width:100%;}
 /* ==========================================================
    SXVD AI AUTOMATIC ROSTER MANAGEMENT SYSTEM
    Updated: live roster/report sync, FT1/FT2 LC Curve,
-   joining date,  shift, compliance and cab summaries.
+   DHH support, safe shift rotation, weekly/monthly overview and compliance.
 ========================================================== */
 
 const DEFAULT_EMPLOYEES = [
   {id:1,name:"Dhanusri",group:"A",role:"Associate",gender:"Female",joiningDate:"",lcCurve:"FT1",cab:"Cab 1",status:"Active"},
   {id:2,name:"Ravi Kumar",group:"B",role:"Associate",gender:"Male",joiningDate:"",lcCurve:"FT2",cab:"Cab 2",status:"Active"},
   {id:3,name:"Priya",group:"C",role:"TL",gender:"Female",joiningDate:"",lcCurve:"FT1",cab:"Cab 3",status:"Active"},
-  {id:4,name:"Arun",group:"D",role:"PA",gender:"Male",joiningDate:"",lcCurve:"FT2",cab:"Cab 1",status:"Active"},
+  {id:4,name:"Arun",group:"D",role:"DHH",gender:"Male",joiningDate:"",lcCurve:"FT2",cab:"Cab 1",status:"Active"},
   {id:5,name:"Sowmya",group:"E",role:"Associate",gender:"Female",joiningDate:"",lcCurve:"FT1",cab:"Cab 2",status:"Active"},
   {id:6,name:"Karthik",group:"F",role:"Manager",gender:"Male",joiningDate:"",lcCurve:"FT2",cab:"Cab 3",status:"Active"}
 ];
@@ -2349,12 +2371,12 @@ let constraints = JSON.parse(localStorage.getItem("rosterConstraints") || "null"
 
 /* Migrate older saved data without deleting it. */
 employees.forEach((e,i)=>{
-  if(e.role==="PA Associate") e.role="PA";
+  if(e.role==="PA Associate" || e.role==="PA") e.role="DHH";
   if(!e.gender) e.gender="Not Set";
   if(!e.status) e.status="Active";
   if(!e.joiningDate) e.joiningDate="";
   if(!e.lcCurve) e.lcCurve=(i%2===0 ? "FT1" : "FT2");
-  if(!e.cab) e.cab="Cab " + ((i%3)+1);
+  e.cab="";
 });
 settings.dayStart="09:45";
 settings.dayEnd="19:45";
@@ -2386,8 +2408,6 @@ let overviewSyncBusy = false;
 function refreshOverviewOnly(){
   renderOverview("dashboardOverviewHead","dashboardOverviewBody");
   renderOverview("reportOverviewHead","reportOverviewBody");
-  renderCabSummary("dashboardCabSummary");
-  renderCabSummary("reportCabSummary");
   renderWeekOffGroups();
 }
 
@@ -2559,16 +2579,12 @@ function nextEmployeeId(){
 }
 
 function selectEmployeeRole(role){
-  role = role==="TL" ? "TL" : role==="Manager" ? "Manager" : "Associate";
-  const roleInput=document.getElementById("employeeRole");
-  if(roleInput) roleInput.value=role;
-
-  ["Associate","TL","Manager"].forEach(r=>{
-    document.getElementById("employeeRole"+r)?.classList.toggle("active",r===role);
-  });
-
+  role = ["Associate","TL","Manager","DHH"].includes(role) ? role : "Associate";
+  const roleInput=document.getElementById("employeeRole"); if(roleInput)roleInput.value=role;
+  ["Associate","TL","Manager","DHH"].forEach(r=>document.getElementById("employeeRole"+r)?.classList.toggle("active",r===role));
   document.getElementById("employeeAssociateFields")?.classList.toggle("hidden",role!=="Associate");
-  document.getElementById("employeeLeadershipFields")?.classList.toggle("hidden",role==="Associate");
+  document.getElementById("employeeLeadershipFields")?.classList.toggle("hidden",!(role==="TL"||role==="Manager"));
+  document.getElementById("employeeDhhFields")?.classList.toggle("hidden",role!=="DHH");
 }
 
 function openEmployeeModal(id=null){
@@ -2587,6 +2603,8 @@ function openEmployeeModal(id=null){
     document.getElementById("employeeLcCurve").value=e.lcCurve||"FT1";
     document.getElementById("employeePhone").value=e.phone||"";
     document.getElementById("employeeLeadershipPhone").value=e.phone||"";
+    document.getElementById("employeeDhhPhone").value=e.phone||"";
+    document.getElementById("employeeDhhGroup").value=e.group||"A";
 
     selectEmployeeRole(e.role);
   }else{
@@ -2595,6 +2613,8 @@ function openEmployeeModal(id=null){
     document.getElementById("employeeLcCurve").value=employees.length%2===0?"FT1":"FT2";
     document.getElementById("employeePhone").value="";
     document.getElementById("employeeLeadershipPhone").value="";
+    document.getElementById("employeeDhhPhone").value="";
+    document.getElementById("employeeDhhGroup").value="A";
     selectEmployeeRole("Associate");
   }
 }
@@ -2607,70 +2627,21 @@ function saveEmployee(){
   const id=document.getElementById("editEmployeeId").value;
   const name=document.getElementById("employeeName").value.trim();
   const role=document.getElementById("employeeRole").value||"Associate";
-
-  if(!name){
-    alert("Please enter employee name.");
-    return;
-  }
-
-  const isAssociate=role==="Associate";
-  const group=isAssociate ? document.getElementById("employeeGroup").value : "";
-  const lcCurve=isAssociate ? document.getElementById("employeeLcCurve").value : "";
-  const phone=(isAssociate
-    ? document.getElementById("employeePhone").value
-    : document.getElementById("employeeLeadershipPhone").value
-  ).trim();
-
+  if(!name){alert("Please enter employee name.");return;}
+  const isAssociate=role==="Associate", isDhh=role==="DHH";
+  const group=isAssociate?document.getElementById("employeeGroup").value:(isDhh?document.getElementById("employeeDhhGroup").value:"");
+  const lcCurve=isAssociate?document.getElementById("employeeLcCurve").value:"";
+  const phone=(isAssociate?document.getElementById("employeePhone").value:(isDhh?document.getElementById("employeeDhhPhone").value:document.getElementById("employeeLeadershipPhone").value)).trim();
   if(id){
     const e=employees.find(x=>Number(x.id)===Number(id));
-    if(e){
-      e.name=name;
-      e.role=role;
-      e.phone=phone;
-
-      if(isAssociate){
-        e.group=group;
-        e.lcCurve=lcCurve;
-      }else{
-        e.group="";
-        e.lcCurve="";
-      }
-
-      // Legacy fields are retained internally only so old saved data
-      // does not break, but they are no longer collected/displayed.
-      e.cab="";
-      e.joiningDate="";
-      e.email="";
-      e.status="Active";
-    }
-
+    if(e){Object.assign(e,{name,role,phone,group,lcCurve,cab:"",joiningDate:"",email:"",status:"Active"});}
     addNotification("Employee Updated",name+" was updated.");
   }else{
-    const newEmployee={
-      id:nextEmployeeId(),
-      name,
-      role,
-      phone,
-      group:isAssociate?group:"",
-      lcCurve:isAssociate?lcCurve:"",
-      gender:"Not Set",
-      status:"Active",
-      joiningDate:"",
-      email:"",
-      cab:""
-    };
-
-    employees.push(newEmployee);
+    employees.push({id:nextEmployeeId(),name,role,phone,group,lcCurve,gender:"Not Set",status:"Active",joiningDate:"",email:"",cab:""});
     addNotification("Employee Added",name+" was added successfully.");
   }
-
-  syncProfilesToEmployees();
-  saveAll();
-  closeEmployeeModal();
-
-  if(rosterData.length) regenerateRoster(false);
-  else refreshLiveDataViews();
-
+  syncProfilesToEmployees(); saveAll(); closeEmployeeModal();
+  if(rosterData.length)regenerateRoster(false); else refreshLiveDataViews();
   refreshAllViews();
 }
 
@@ -2690,7 +2661,7 @@ function deleteEmployee(employeeId){
 }
 
 function roleBadge(role){
-  const cls=role==="Manager"?"role-manager":role==="TL"?"role-tl":role==="PA"?"role-pa":"role-associate";
+  const cls=role==="Manager"?"role-manager":role==="TL"?"role-tl":role==="DHH"?"role-pa":"role-associate";
   return `<span class="role-badge ${cls}">${esc(role)}</span>`;
 }
 function statusBadge(status){
@@ -2714,7 +2685,7 @@ function renderEmployees(){
       <td><span class="role-badge role-associate">Group ${esc(e.group)}</span></td>
       <td>${roleBadge(e.role)}</td>
       <td>${esc(e.gender||"Not Set")}</td>
-      <td><span class="lc-${e.lcCurve==="FT2"?"ft2":"ft1"} role-badge">${esc(e.lcCurve||"FT1")}</span></td>
+      <td>${e.role==="Associate"?`<span class="lc-${e.lcCurve==="FT2"?"ft2":"ft1"} role-badge">${esc(e.lcCurve||"FT1")}</span>`:"—"}</td>
       <td>
         <button type="button" class="small-btn" onclick="openEmployeeModal(${e.id})">✏ Edit</button>
         <button type="button" class="small-btn danger" data-delete-employee="${e.id}">🗑 Delete</button>
@@ -2736,40 +2707,21 @@ function populateEmployeeSelectors(){
 
 function syncProfilesToEmployees(){
   employees.forEach(e=>{
-    const p=profiles[e.id];
-    if(!p)return;
-
-    e.name=p.name||e.name;
-    e.role=p.role||e.role||"Associate";
-    e.phone=p.phone||e.phone||"";
-
-    if(e.role==="Associate"){
-      e.group=p.group||e.group||"A";
-      e.lcCurve=p.lcCurve||e.lcCurve||"FT1";
-    }else{
-      e.group="";
-      e.lcCurve="";
-    }
-
-    // Removed profile attributes are no longer used by the UI.
-    e.cab="";
-    e.joiningDate="";
-    e.email="";
-    e.status="Active";
+    const p=profiles[e.id]; if(!p)return;
+    e.name=p.name||e.name; e.role=p.role||e.role||"Associate"; e.phone=p.phone||e.phone||"";
+    if(e.role==="Associate"){e.group=p.group||e.group||"A";e.lcCurve=p.lcCurve||e.lcCurve||"FT1";}
+    else if(e.role==="DHH"){e.group=p.group||e.group||"A";e.lcCurve="";}
+    else{e.group="";e.lcCurve="";}
+    e.cab="";e.joiningDate="";e.email="";e.status="Active";
   });
 }
 
 function selectProfileSubdivision(role){
-  role=role==="TL"?"TL":role==="Manager"?"Manager":"Associate";
-
-  ["Associate","TL","Manager"].forEach(r=>{
-    document.getElementById("profileTab"+r)?.classList.toggle("active",r===role);
-  });
-
-  document.getElementById("associateProfileFields")
-    ?.classList.toggle("hidden",role!=="Associate");
-  document.getElementById("leadershipProfileFields")
-    ?.classList.toggle("hidden",role==="Associate");
+  role=["Associate","TL","Manager","DHH"].includes(role)?role:"Associate";
+  ["Associate","TL","Manager","DHH"].forEach(r=>document.getElementById("profileTab"+r)?.classList.toggle("active",r===role));
+  document.getElementById("associateProfileFields")?.classList.toggle("hidden",role!=="Associate");
+  document.getElementById("leadershipProfileFields")?.classList.toggle("hidden",!(role==="TL"||role==="Manager"));
+  document.getElementById("dhhProfileFields")?.classList.toggle("hidden",role!=="DHH");
 }
 
 function loadProfile(){
@@ -2795,6 +2747,8 @@ function loadProfile(){
   set("profileGroup",p.group||e.group||"A");
   set("profilePhone",p.phone||e.phone||"");
   set("profileLeadershipPhone",p.phone||e.phone||"");
+  set("profileDhhPhone",p.phone||e.phone||"");
+  set("profileDhhGroup",p.group||e.group||"A");
 
   selectProfileSubdivision(role);
 
@@ -2802,7 +2756,9 @@ function loadProfile(){
   document.getElementById("profileMeta").innerText=
     role==="Associate"
       ? `Associate • Group ${p.group||e.group||"A"} • ${p.lcCurve||e.lcCurve||"FT1"}`
-      : role;
+      : role==="DHH"
+        ? `DHH • Group ${p.group||e.group||"A"}`
+        : role;
 
   document.getElementById("profileAvatar").innerText=
     (p.name||e.name||"?").charAt(0).toUpperCase();
@@ -2892,6 +2848,8 @@ function openEmployeeModal(id=null){
     document.getElementById("employeeGroup").value=e.group||"A";
     document.getElementById("employeePhone").value=e.phone||"";
     document.getElementById("employeeLeadershipPhone").value=e.phone||"";
+    document.getElementById("employeeDhhPhone").value=e.phone||"";
+    document.getElementById("employeeDhhGroup").value=e.group||"A";
     selectEmployeeRole(e.role);
   }else{
     document.getElementById("employeeName").value="";
@@ -2899,6 +2857,8 @@ function openEmployeeModal(id=null){
     document.getElementById("employeeGroup").value="A";
     document.getElementById("employeePhone").value="";
     document.getElementById("employeeLeadershipPhone").value="";
+    document.getElementById("employeeDhhPhone").value="";
+    document.getElementById("employeeDhhGroup").value="A";
     selectEmployeeRole("Associate");
   }
 }
@@ -3070,14 +3030,8 @@ function generateRoster(showToast=true){
     return false;
   }
 
-  const associates=employees.filter(e=>
-    (e.role||"Associate")==="Associate"
-  );
-
-  if(!associates.length){
-    alert("Please add at least one Associate before generating the roster.");
-    return false;
-  }
+  const associates=employees.filter(e=>["Associate","DHH"].includes(e.role||"Associate"));
+  if(!associates.length){alert("Please add at least one Associate or DHH before generating the roster.");return false;}
 
   const days=7;
   const startDate=getRosterStartDate();
@@ -3096,7 +3050,7 @@ function generateRoster(showToast=true){
     employeeId:e.id,
     name:e.name,
     group:e.group||"A",
-    lcCurve:e.lcCurve||"FT1",
+    lcCurve:e.role==="Associate"?(e.lcCurve||"FT1"):"",
     shifts:Array(days).fill("OFF"),
     idx
   }));
@@ -3114,39 +3068,31 @@ function generateRoster(showToast=true){
         r.shifts[d]="OFF";
       }else{
         // Offset employees so all associates do not receive identical blocks.
-        const p=pattern[(r.idx+d)%pattern.length];
+        let p=pattern[(r.idx+d)%pattern.length];
+        if(d>0 && r.shifts[d-1]==="NIGHT" && p==="DAY") p="OFF";
+        const av=getAvailabilityRecord(r.employeeId,d+1);
+        if(constraints.useAvailability==="yes" && isUnavailable(r.employeeId,d+1)) p="OFF";
+        else if(av && av.pattern){
+          const ap=shiftFromPattern(av.pattern,d+1,r.idx,r.lcCurve);
+          if(!(r.shifts[d-1]==="NIGHT" && ap==="DAY")) p=ap;
+        }
         r.shifts[d]=p;
       }
     }
   });
 
-  // Balance FT1 / FT2 independently inside DAY and NIGHT.
-  // LC Curve is an attribute, not a shift mapping.
+  // Balance FT1/FT2 across DAY and NIGHT without ever assigning NIGHT -> DAY next day.
   for(let d=0;d<days;d++){
     ["DAY","NIGHT"].forEach(shift=>{
-      const assigned=rows.filter(r=>r.shifts[d]===shift);
-      assigned.sort((a,b)=>{
-        const ca=a.lcCurve==="FT1"?0:1;
-        const cb=b.lcCurve==="FT1"?0:1;
-        return ca-cb || a.idx-b.idx;
-      });
-
-      // If one curve dominates, rotate excess assignments across the
-      // two shift pools without changing employee LC Curve.
-      // We do not relabel LC Curve; balance is measured by employee mix.
-      const target=Math.floor(assigned.length/2);
-
-      // Reorder only for deterministic presentation.
-      assigned.sort((a,b)=>a.idx-b.idx);
-
-      // Record balance target for overview calculations.
-      rows.forEach(r=>{
-        if(!r._balance)r._balance={};
-        r._balance[d+"_"+shift]={
-          total:assigned.length,
-          target
-        };
-      });
+      let a=rows.filter(r=>r.shifts[d]===shift && r.lcCurve);
+      let f1=a.filter(r=>r.lcCurve==="FT1").length, f2=a.filter(r=>r.lcCurve==="FT2").length;
+      if(Math.abs(f1-f2)<=1)return;
+      const fromCurve=f1>f2?"FT1":"FT2", toCurve=f1>f2?"FT2":"FT1";
+      const candidates=rows.filter(r=>r.lcCurve===fromCurve && r.shifts[d]===shift);
+      for(const r of candidates){
+        const alt=rows.find(x=>x.lcCurve===toCurve && x.shifts[d]!==(shift) && x.shifts[d]!=="OFF" && !(d>0&&x.shifts[d-1]==="NIGHT"&&shift==="DAY"));
+        if(alt){const tmp=alt.shifts[d];alt.shifts[d]=shift;r.shifts[d]=tmp;break;}
+      }
     });
   }
 
@@ -3638,11 +3584,11 @@ function rosterDayRows(){
       dayMale:day.filter(x=>x.employee.gender==="Male").length,
       dayFt1:day.filter(x=>x.employee.lcCurve==="FT1").length,
       dayFt2:day.filter(x=>x.employee.lcCurve==="FT2").length,
-      dayDhh:day.filter(x=>x.employee.role==="PA").length,
+      dayDhh:day.filter(x=>x.employee.role==="DHH").length,
       nightMale:night.filter(x=>x.employee.gender==="Male").length,
       nightFt1:night.filter(x=>x.employee.lcCurve==="FT1").length,
       nightFt2:night.filter(x=>x.employee.lcCurve==="FT2").length,
-      nightDhh:night.filter(x=>x.employee.role==="PA").length,
+      nightDhh:night.filter(x=>x.employee.role==="DHH").length,
       lateMale:0
     };
   });
@@ -3729,27 +3675,6 @@ function getReportWeeks(){
   return weeks;
 }
 
-function populateReportWeekSelector(){
-  const select=document.getElementById("reportWeekSelect");
-  if(!select)return;
-
-  const weeks=getReportWeeks();
-  const previous=select.value;
-
-  select.innerHTML=weeks.map((w,i)=>{
-    const start=new Date(w.start+"T12:00:00");
-    const end=new Date(w.end+"T12:00:00");
-    const label=`Week ${i+1} — ${start.toLocaleDateString("en-GB",{day:"2-digit",month:"short"})} to ${end.toLocaleDateString("en-GB",{day:"2-digit",month:"short"})}`;
-    return `<option value="${i}">${label}</option>`;
-  }).join("");
-
-  if(previous && weeks.some(w=>String(w.index)===previous)){
-    select.value=previous;
-  }else if(weeks.length){
-    select.value="0";
-  }
-}
-
 function getCompliance(){
   const rows=rosterDayRows();
   if(!rows.length)return {day:0,night:0,off:0,balanced:true,score:100,issues:[]};
@@ -3802,18 +3727,6 @@ function complianceCards(targetId){
     <div class="compliance-card ${status}"><h4>Overall Compliance</h4><strong>${c.score}%</strong></div>
     <div class="compliance-card ${c.late>=0?"compliance-good":"compliance-warn"}"><h4>Shift Coverage</h4><strong>${c.late}</strong></div>`;
 }
-function renderCabSummary(targetId){
-  const box=document.getElementById(targetId);if(!box)return;
-  const cabNames=["Cab 1","Cab 2","Cab 3"];
-  box.innerHTML=cabNames.map((cab,i)=>{
-    const list=employees.filter(e=>(e.cab||"Cab 1")===cab);
-    return `<div class="cab-card cab-${i+1}">
-      <h3>🚕 ${cab}</h3><div class="cab-count">${list.length} Employees</div>
-      <ul class="cab-list">${list.length?list.map(e=>`<li>${esc(e.name)} — ${esc(e.role)} — ${esc(e.lcCurve||"FT1")}</li>`).join(""):"<li>No employees assigned</li>"}</ul>
-    </div>`;
-  }).join("");
-}
-
 function renderWeekOffGroups(){
   const box=document.getElementById("weekoffGroupDashboard");if(!box)return;
   box.innerHTML=Object.entries(WEEK_OFF_GROUPS).map(([g,days])=>`
@@ -3823,7 +3736,6 @@ function renderWeekOffGroups(){
 }
 function updateDashboard(){
   renderOverview("dashboardOverviewHead","dashboardOverviewBody",7);
-  renderCabSummary("dashboardCabSummary");
   renderWeekOffGroups();
   const dn=document.getElementById("dashboardNotifications");
   if(dn)dn.innerHTML=notifications.length?notifications.slice(-5).reverse().map(n=>`<div class="suggestion"><b>${esc(n.title)}</b><br>${esc(n.message)}<br><small>${esc(n.time)}</small></div>`).join(""):`<div class="empty">No notifications.</div>`;
@@ -3832,7 +3744,6 @@ function updateDashboard(){
 function updateReports(force=false){
   populateReportWeekSelector();
   renderOverview("reportOverviewHead","reportOverviewBody",null);
-  renderCabSummary("reportCabSummary");
   const last=document.getElementById("reportLastUpdated");
   if(last)last.innerText="Updated "+new Date().toLocaleTimeString();
   try{renderMonthlyOverview();}catch(e){}
